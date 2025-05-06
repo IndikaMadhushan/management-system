@@ -1,20 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package inf;
 
-/**
- *
- * @author Dell
- */
+import codes.DBconnect;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class mainframe extends javax.swing.JFrame {
 
-    /**
-     * Creates new form mainframe
-     */
-    public mainframe() {
+    Connection conn = null;
+    PreparedStatement pst = null;
+
+    public mainframe() throws SQLException {
         initComponents();
+        conn = (Connection) DBconnect.connect();
     }
 
     /**
@@ -106,11 +107,17 @@ public class mainframe extends javax.swing.JFrame {
         insertBtn.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         insertBtn.setText("Insert");
         insertBtn.setBorder(null);
+        insertBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertBtnActionPerformed(evt);
+            }
+        });
         jPanel5.add(insertBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 30));
 
         updateBtn.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         updateBtn.setText("Update");
-        updateBtn.setBorder(null);
+        updateBtn.setBorder(new javax.swing.border.LineBorder(java.awt.Color.GRAY, 1, true)
+        );
         jPanel5.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 90, 30));
 
         deleteBtn.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -152,13 +159,35 @@ public class mainframe extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 20, 740, 590));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 20, 730, 590));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 620));
 
         setSize(new java.awt.Dimension(1063, 652));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
+        String name;
+        int age;
+        int grade;
+        name = nameBox.getText();
+        age = Integer.parseInt(ageBox.getText());
+        grade = Integer.parseInt(gradeBox.getSelectedItem().toString());
+
+        try {
+            String query = "insert into student (sName, sAge, sGrade) values (?, ?, ?)";
+            pst = (PreparedStatement) conn.prepareStatement(query);
+            pst.setString(1, name);
+            pst.setInt(2, age);
+            pst.setInt(3, grade);
+            pst.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "data inserted!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_insertBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,7 +219,11 @@ public class mainframe extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainframe().setVisible(true);
+                try {
+                    new mainframe().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(mainframe.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
