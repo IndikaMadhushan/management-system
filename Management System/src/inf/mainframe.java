@@ -41,7 +41,9 @@ public class mainframe extends javax.swing.JFrame {
         insertBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
-        clearBtn = new javax.swing.JButton();
+        clearBtn1 = new javax.swing.JButton();
+        clearBtn2 = new javax.swing.JButton();
+        exitBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table1 = new javax.swing.JTable();
 
@@ -69,11 +71,11 @@ public class mainframe extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 50));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 70));
 
         jPanel4.setBackground(new java.awt.Color(0, 204, 204));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -116,12 +118,22 @@ public class mainframe extends javax.swing.JFrame {
         deleteBtn.setBorder(null);
         jPanel5.add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 80, 30));
 
-        clearBtn.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        clearBtn.setText("Clear");
-        clearBtn.setBorder(null);
-        jPanel5.add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 90, 30));
+        clearBtn1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        clearBtn1.setText("Clear");
+        clearBtn1.setBorder(null);
+        jPanel5.add(clearBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 90, 30));
+
+        clearBtn2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        clearBtn2.setText("Clear");
+        clearBtn2.setBorder(null);
+        jPanel5.add(clearBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 90, 30));
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 260, 140));
+
+        exitBtn.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        exitBtn.setText("Exit");
+        exitBtn.setBorder(null);
+        jPanel2.add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 260, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 620));
 
@@ -185,8 +197,10 @@ public class mainframe extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageBox;
-    private javax.swing.JButton clearBtn;
+    private javax.swing.JButton clearBtn1;
+    private javax.swing.JButton clearBtn2;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton exitBtn;
     private javax.swing.JComboBox<String> gradeBox;
     private javax.swing.JButton insertBtn;
     private javax.swing.JLabel jLabel1;
